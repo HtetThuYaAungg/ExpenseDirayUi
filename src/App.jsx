@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import ExpenseItem from "./components/Expense/ExpenseItem/ExpenseItem";
 import ExpenseFilter from "./components/Expense/Filter/ExpenseFilter";
 import NewExpense from "./components/NewExpense/NewExpense";
 import "./App.css";
+import { API_URL } from "./api/api";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { selectExpenses } from "./features/expenses/expensesSlice";
+import { fetchExpenses } from "./features/expenses/expensesSlice";
+import { selectExpensesStatus } from "./features/expenses/expensesSlice";
 
 const App = () => {
-
   const [filterYear, setFilterYear] = useState("2023");
 
   const data = [
@@ -31,19 +36,58 @@ const App = () => {
     },
   ];
 
-  const [expenses, setExpenses] = useState(data);
+  const dispatch = useDispatch();
+  const data1 = useSelector(selectExpenses);
+  const status = useSelector(selectExpensesStatus);
+  const expenses = data1.getexpenses;
 
-  const onAddExpense = (expense) => {
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
+
+  if (expenses === undefined || status === !false) {
+    return <div>Loading expenses...</div>;
+  }
+
+  // const [expenses, setExpenses] = useState([]);
+
+  // const getExpenseData = async () => {
+  //   try {
+  //     const res = await axios.get(`${API_URL}/getexpenses`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     console.log("res", res.data.getexpenses);
+  //     setExpenses(res.data.getexpenses);
+  //   } catch (err) {
+
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const timeId = setInterval(() => {
+  //     getExpenseData();
+  //   }, 6000);
+  //   return () => clearInterval(timeId);
+  // }, []);
+
+  // useEffect(() => {
+  //   getExpenseData();
+  // }, []);
+
+  //callback function new expense object
+  const onAddExpense = async (expense) => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
     console.log("expense", expense);
   };
+  //callback function new expense object
 
   const filterChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);
   };
-
 
   return (
     <div>
@@ -52,11 +96,11 @@ const App = () => {
       <ExpenseFilter
         selected={filterYear}
         onChangeFilter={filterChangeHandler}
+        expenses={expenses}
       />
       <ExpenseItem data={expenses} filterYear={filterYear} />
     </div>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;

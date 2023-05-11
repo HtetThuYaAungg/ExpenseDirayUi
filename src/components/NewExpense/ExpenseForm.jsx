@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import "./NewExpense.css";
+import { API_URL } from "../../api/api";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { ImSpinner2 } from "react-icons/im";
 
 const ExpenseForm = (props) => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
+  const [image, setImage] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // const [userInput, setUserInput] = useState({
   //     title: '',
   //     price: '',
   //     date: '',
   // });
+  const imageFromInputChange = (e) => {
+    // console.log(e.target.files[0]);
+    setImage(e.target.files);
+  };
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
@@ -43,19 +53,90 @@ const ExpenseForm = (props) => {
     // })
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const expenseData = {
-      title: title,
-      price: price,
-      date: new Date(date),
-    };
-    props.onSaveExpenseData(expenseData);
+  const canSave = [title, price, date, image].every(Boolean);
 
-    setTitle("");
-    setPrice("");
-    setDate("");
+  const resetHandle = (event) => {
+    event.preventDefault();
+    props.onClose();
+    setImage(""), setTitle(""), setPrice(""), setDate("");
   };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      var formData = new FormData();
+      formData.append("title", title);
+      formData.append("price", price);
+      formData.append("date", date);
+      for (let i = 0; i < image.length; i++) {
+        formData.append("photos", image[i]);
+      }
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const res = await axios.post(`${API_URL}/expense`, formData, config);
+      if (res) {
+        setIsLoading(false);
+        Swal.fire({
+          toast: true,
+          icon: "success",
+          title: "Success!",
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      if (
+        error.statusCode === 401 ||
+        error.statusCode === 404 ||
+        error.statusCode === 403
+      ) {
+        Swal.fire({
+          toast: true,
+          icon: "error",
+          title: "Failed!",
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        // alert(error);
+        Swal.fire({
+          toast: true,
+          icon: "error",
+          title: "Lost Connection!",
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      setIsLoading(false);
+    }
+
+    setImage(""), setPrice(""), setDate(""), setTitle("");
+  };
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   const expenseData = {
+  //     title: title,
+  //     price: price,
+  //     date: new Date(date),
+  //     photos: image
+  //   };
+  //   props.onSaveExpenseData(expenseData);
+
+  //   setTitle("");
+  //   setPrice("");
+  //   setDate("");
+  // };
 
   return (
     <form className="new-expense" onSubmit={submitHandler}>
@@ -84,10 +165,25 @@ const ExpenseForm = (props) => {
             onChange={dateChangeHandler}
           />
         </div>
+        <div className="new-expense__control">
+          <label>Photos</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/png, image/gif, image/jpeg"
+            onChange={imageFromInputChange}
+            placeholder=""
+            required
+            multiple
+          />
+        </div>
       </div>
       <div className="new-expense__actions">
-        <button onClick={props.onClose}>Cancel</button>
-        <button type="submit">Add Expense</button>
+        <button onClick={resetHandle}>Cancel</button>
+        <button disabled={!canSave} type="submit">
+          {isLoading ? <ImSpinner2 className="animate-spin" /> : "ADDED"}
+        </button>
       </div>
     </form>
   );

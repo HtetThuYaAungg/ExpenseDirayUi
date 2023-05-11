@@ -6,8 +6,14 @@ import Card from "../Card/Card";
 
 
 const ExpenseItem = ({ data, filterYear }) => {
+
+
   const filterExpenses = data.filter((expense) => {
-    return expense.date.getFullYear().toString() === filterYear;
+    // console.log("data", expense.date);
+    const dateObj = new Date(expense.date);
+
+    return dateObj.getFullYear() === parseInt(filterYear);
+
   });
 
   return (
