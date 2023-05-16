@@ -41,13 +41,28 @@ const App = () => {
   const status = useSelector(selectExpensesStatus);
   const expenses = data1.getexpenses;
 
+  const [updateExpense, setUpdateExpense] = useState("");
+  const [isAddForm, setIsAddForm] = useState(false);
+
   useEffect(() => {
     dispatch(fetchExpenses());
-  }, [dispatch]);
+  }, []);
 
-  if (expenses === undefined || status === !false) {
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     dispatch(fetchExpenses());
+  //   },);
+  //   return () => {
+  //     clearInterval(timer);
+  //   }
+  // }, []);
+
+  if (!expenses && status === 'loading') {
     return <div>Loading expenses...</div>;
+  } else if (!expenses || status === 'failed') {
+    return <div>Network Error....</div>;
   }
+
 
   // const [expenses, setExpenses] = useState([]);
 
@@ -83,22 +98,29 @@ const App = () => {
     });
     console.log("expense", expense);
   };
+
+  const onEditExpense = async (expense) => {
+    setUpdateExpense(expense);
+    console.log("expense", expense);
+  };
   //callback function new expense object
 
   const filterChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);
   };
 
+
+
   return (
     <div>
       <h2 className="text">Let's get started!</h2>
-      <NewExpense onAddExpense={onAddExpense} />
+      <NewExpense onAddExpense={onAddExpense} isAddForm={isAddForm} setIsAddForm={setIsAddForm} setUpdateExpense={setUpdateExpense} updateExpense={updateExpense} />
       <ExpenseFilter
         selected={filterYear}
         onChangeFilter={filterChangeHandler}
         expenses={expenses}
       />
-      <ExpenseItem data={expenses} filterYear={filterYear} />
+      <ExpenseItem data={expenses} filterYear={filterYear} setUpdateExpense={setUpdateExpense} setIsAddForm={setIsAddForm} />
     </div>
   );
 };

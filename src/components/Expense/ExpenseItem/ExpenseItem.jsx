@@ -5,7 +5,7 @@ import ExpenseList from "../List/ExpenseList";
 import Card from "../Card/Card";
 
 
-const ExpenseItem = ({ data, filterYear }) => {
+const ExpenseItem = ({ data, filterYear, setUpdateExpense, setIsAddForm }) => {
 
 
   const filterExpenses = data.filter((expense) => {
@@ -21,7 +21,7 @@ const ExpenseItem = ({ data, filterYear }) => {
       <ExpenseChart expenses={filterExpenses} />
       <div className="expense">
         <Card>
-          <ExpenseList filterExpenses={filterExpenses} />
+          <ExpenseList filterExpenses={filterExpenses} setUpdateExpense={setUpdateExpense} setIsAddForm={setIsAddForm} />
         </Card>
       </div>
     </>
