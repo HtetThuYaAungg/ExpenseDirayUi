@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import { ImSpinner2 } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import { addExpenses, editExpenses, fetchExpenses, selectAddExpensesStatus, selectEditExpensesStatus } from "../../features/expenses/expensesSlice";
+import Button from "../UI/Button/Button";
+
 
 const ExpenseForm = ({ onClose, updateExpense, setUpdateExpense }) => {
   const [title, setTitle] = useState("");
@@ -13,7 +15,6 @@ const ExpenseForm = ({ onClose, updateExpense, setUpdateExpense }) => {
   const [date, setDate] = useState("");
   const [image, setImage] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
 
 
   // const [userInput, setUserInput] = useState({
@@ -313,8 +314,10 @@ const ExpenseForm = ({ onClose, updateExpense, setUpdateExpense }) => {
               <label>Date</label>
               <input
                 type="date"
+
                 min="2020-01-01"
-                max="2023-12-31"
+                max={new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]}
+                id="dt"
                 value={date}
                 onChange={dateChangeHandler}
               />
@@ -334,10 +337,11 @@ const ExpenseForm = ({ onClose, updateExpense, setUpdateExpense }) => {
             </div>
           </div>
           <div className="new-expense__actions">
-            <button onClick={resetHandle}>Cancel</button>
-            <button disabled={!canSave} type="submit">
+
+            <Button onClick={resetHandle}>Cancel</Button>
+            <Button disabled={!canSave} type="submit">
               {isLoading ? <ImSpinner2 className="animate-spin" /> : "ADDED"}
-            </button>
+            </Button>
           </div>
         </form>
       )
