@@ -8,7 +8,8 @@
   justify-content: space-between;
   align-items: center;
   background: #741188;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  z-index:2;
   
 }
 
@@ -16,3 +17,9 @@
   color: white;
 }
 
+@media (max-width: 480px) {
+  .main-header h1 {
+    font-size: 14px;
+    
+  }
+}

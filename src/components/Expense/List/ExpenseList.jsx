@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ExpenseDate from "../ExpenseDate/ExpenseDate";
 import "./ExpenseList.css";
-import { FaArrowAltCircleDown, FaRegTimesCircle } from "react-icons/fa";
+import { FaArrowAltCircleDown, FaRegTimesCircle, FaChevronRight } from "react-icons/fa";
 import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";

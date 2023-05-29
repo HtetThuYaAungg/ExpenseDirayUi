@@ -1,8 +1,9 @@
 .login {
   width: 90%;
   max-width: 40rem;
-  margin: 6rem auto;
+  margin: 12.4rem auto;
   padding: 2rem;
+  height: 100%
 }
 .control {
   margin: 1rem 0;
@@ -51,5 +52,16 @@
     align-items: center;
     flex-direction: row;
   }
+ 
 
+}
+
+@media( max-width : 768px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 17rem auto;
+    padding: 2rem;
+    height: 100%
+  }
 }

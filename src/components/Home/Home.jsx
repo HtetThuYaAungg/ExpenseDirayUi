@@ -29,6 +29,7 @@ import { fetchExpenses } from "../../features/expenses/expensesSlice";
 import { selectExpensesStatus } from "../../features/expenses/expensesSlice";
 import Card from "../UI/Card/Card";
 
+
 const Home = (props) => {
   const [filterYear, setFilterYear] = useState("2023");
 

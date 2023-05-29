@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaChevronRight } from "react-icons/fa";
 
 const ImageSlider = ({ data }) => {
   const [activeImageNum, setActiveImageNum] = useState(0);
@@ -13,7 +13,7 @@ const ImageSlider = ({ data }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 8000);
 
     return () => {
       clearInterval(interval);
