@@ -146,10 +146,10 @@ const Login = (props) => {
       <Card className={classes.login}>
         <form onSubmit={submitHandler}>
 
-          <Input ref={emailInputRef} label="E-Mail" id="email" type="emial" isValid={emailIsValid} value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
+          <Input placeholder="Example@gmail.com" ref={emailInputRef} label="E-Mail" id="email" type="emial" isValid={emailIsValid} value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
 
 
-          <Input ref={passwordInputRef} label="Password" id="password" type="password" isValid={passwordIsValid} value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
+          <Input placeholder="Password must be any 8 character long!" ref={passwordInputRef} label="Password" id="password" type="password" isValid={passwordIsValid} value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
 
           <div className={classes.actions}>
             <Button type="submit" className={classes.button} >
