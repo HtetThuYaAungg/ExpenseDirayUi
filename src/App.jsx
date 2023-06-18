@@ -137,6 +137,9 @@ import MainHeader from './components/MainHeader/MainHeader';
 import Footer from './components/Footer/Footer';
 import './App.css'
 import AuthContext from './store/AuthContext';
+import Layout from './components/Order/Layout/Layout';
+import { Route, Routes } from 'react-router-dom';
+import PrivateRoute from './components/Login/PrivateRoute.page';
 
 
 
@@ -149,10 +152,26 @@ const App = () => {
     <div className='App'>
 
       <MainHeader />
-      <main>
+      {/* <main>
         {!ctx.isLoggedIn && <Login />}
-        {ctx.isLoggedIn && <Home />}
-      </main>
+
+      </main> */}
+      <Routes>
+
+        <Route path='/login' element={<Login />} />
+        {/* <Route path='/' element={<Home />} />
+        <Route path='/layout' element={<Layout />} /> */}
+        {/* <Route path='*' element={<Missing />} /> */}
+
+        <Route element={<PrivateRoute />}>
+
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/layout' element={<Layout />} />
+          <Route exact path='/admin' element={<Layout />} />
+        </Route>
+
+      </Routes>
+
       <Footer />
     </div>
 

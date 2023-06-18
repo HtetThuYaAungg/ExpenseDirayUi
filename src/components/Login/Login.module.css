@@ -67,16 +67,16 @@
     height: 100%
   }
 }
-/* 
+
 @media( min-width : 1024px ),(min-width:1200){
   .login {
     width: 90%;
     max-width: 40rem;
-    margin: 16rem auto;
+    margin: 16.7rem auto;
     padding: 2rem;
     height: 100%
   }
-} */
+}
 
 @media(width : 1368px ),(height:912px){
   .login {

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import classes from './Navigation.module.css';
 import AuthContext from '../../store/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Navigation = (props) => {
 
@@ -13,12 +14,20 @@ const Navigation = (props) => {
       <ul>
         {ctx.isLoggedIn && (
           <li>
-            <a href="/">Users</a>
+
+            <Link to="/">Home</Link>
           </li>
         )}
         {ctx.isLoggedIn && (
           <li>
-            <a href="/">Admin</a>
+
+            <Link to="/layout">Users</Link>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+
+            <Link to="/admin">Admin</Link>
           </li>
         )}
         {ctx.isLoggedIn && (

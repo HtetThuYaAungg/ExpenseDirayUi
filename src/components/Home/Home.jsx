@@ -17,7 +17,7 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import ExpenseItem from "./../Expense/ExpenseItem/ExpenseItem"
-import NewExpense from "./../NewExpense/NewExpense"
+import NewExpense from "../Expense/NewExpense/NewExpense"
 import ExpenseFilter from "./../Expense/Filter/ExpenseFilter"
 import classes from './Home.module.css';
 // import "./App.css";
@@ -83,17 +83,17 @@ const Home = (props) => {
   }
 
 
-  // const [expenses, setExpenses] = useState([]);
+  // const [user, setUser] = useState([]);
 
-  // const getExpenseData = async () => {
+  // const getUserData = async () => {
   //   try {
-  //     const res = await axios.get(`${API_URL}/getexpenses`, {
+  //     const res = await axios.get("http://localhost:3000/api/todos", {
   //       headers: {
   //         "Content-Type": "application/json",
   //       },
   //     });
-  //     console.log("res", res.data.getexpenses);
-  //     setExpenses(res.data.getexpenses);
+  //     console.log("res", res.data);
+  //     setUser(res.data);
   //   } catch (err) {
 
   //   }
@@ -101,10 +101,12 @@ const Home = (props) => {
 
   // useEffect(() => {
   //   const timeId = setInterval(() => {
-  //     getExpenseData();
+  //     getUserData();
   //   }, 6000);
   //   return () => clearInterval(timeId);
   // }, []);
+
+  // console.log("user", user)
 
   // useEffect(() => {
   //   getExpenseData();

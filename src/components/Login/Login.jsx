@@ -6,6 +6,8 @@ import Button from '../UI/Button/Button';
 import AuthContext from '../../store/AuthContext';
 import Input from '../UI/Input/Input';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
@@ -41,9 +43,36 @@ const Login = (props) => {
 
   const [passwordState, passwordDispatch] = useReducer(passwordReducer, { value: '', isValid: null });
 
+
+  // const [user, setUser] = useState([]);
+
+  // const getUserData = async () => {
+  //   try {
+  //     const res = await axios.get("http://localhost:3000/api/todos", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     console.log("res", res.data);
+  //     setUser(res.data);
+  //   } catch (err) {
+
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const timeId = setInterval(() => {
+  //     getUserData();
+  //   }, 6000);
+  //   return () => clearInterval(timeId);
+  // }, []);
+
+  // console.log("user", user)
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  const navigate = useNavigate();
 
   const ctx = useContext(AuthContext)
 
@@ -102,11 +131,13 @@ const Login = (props) => {
     event.preventDefault();
     if (formIsValid) {
       ctx.onLogin(emailState.value, passwordState.value);
+      navigate('/')
     } else if (!emailIsValid) {
       emailInputRef.current.focus();
     } else {
       passwordInputRef.current.focus();
     }
+
 
   };
 
