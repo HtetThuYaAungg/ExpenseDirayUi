@@ -1,0 +1,182 @@
+.login {
+  width: 90%;
+  max-width: 40rem;
+  margin: 12.4rem auto;
+  padding: 2rem;
+  height: 100%
+}
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.control label,
+.control input {
+  display: block;
+}
+
+.control label {
+  font-weight: bold;
+  flex: 1;
+  color: #464646;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  flex: 3;
+  font: inherit;
+  padding: 0.35rem 0.35rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.control input:focus {
+  outline: none;
+  border-color: #4f005f;
+  background: #f6dbfc;
+}
+
+.control.invalid input {
+  border-color: red;
+  background: #fbdada;
+}
+
+.actions {
+  text-align: center;
+}
+
+
+@media( max-width : 460px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 17.7rem auto;
+    padding: 2rem;
+    height: 100%
+  }
+}
+
+@media( min-width : 460px ),( min-width : 980){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 12.4rem auto;
+    padding: 2rem;
+    height: 100%
+  }
+}
+
+@media( min-width : 1024px ),(min-width:1200){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 16.7rem auto;
+    padding: 2rem;
+    height: 100%
+  }
+}
+
+@media(width : 1368px ),(height:912px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 19.6rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+@media(height : 1368px ),(width:912px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 33.8rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+@media(height : 1180px ),(height: 820px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 28rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+@media(height : 1024px ),(height:768px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 23rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+@media(width : 1114px ) and (height:720px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 13.5rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+@media(height : 1114px ) and (width:720px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 23.9rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+@media(width : 720px ) and (height:540px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 8.4rem auto;
+    padding: 0rem;
+   
+  }
+}
+
+@media(height : 720px ) and (width:540px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 14rem auto;
+    padding: 0rem;
+   
+  }
+}
+
+
+@media(width : 280px ),(height:635px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 9.5rem auto;
+    padding: 2rem;
+   
+  }
+}
+
+
+@media(width : 1280px ),(height:800px){
+  .login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 16rem auto;
+    padding: 2rem;
+   
+  }
+}
+  
